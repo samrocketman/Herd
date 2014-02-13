@@ -11,7 +11,7 @@ from eventlet.green import socket
 from eventlet.green import subprocess
 
 
-opts = None
+opts = {}
 murder_client = eventlet.import_patched('murder_client')
 bttrack = eventlet.import_patched('BitTornado.BT1.track')
 makemetafile = eventlet.import_patched('BitTornado.BT1.makemetafile')
