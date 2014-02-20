@@ -28,10 +28,10 @@ setup(
     url='http://github.com/naterh/Horde',
     description='Torrent distribution.',
     long_description=open('README.md').read(),
-    install_requires=["argparse"],
+    install_requires=[],
     entry_points={
         'console_scripts': [
-            'herd = horde.horde:entry_point',
+            'horde = horde.horde:entry_point',
         ],
     },
     data_files=[('horde', ['horde/bittornado.tar.gz'])]
