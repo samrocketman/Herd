@@ -1,9 +1,9 @@
 # Written by Bram Cohen
 # see LICENSE.txt for license information
 
-from herd.BitTornado.bitfield import Bitfield
+from horde.BitTornado.bitfield import Bitfield
 from sha import sha
-from herd.BitTornado.clock import clock
+from horde.BitTornado.clock import clock
 from traceback import print_exc
 from random import randrange
 try:

@@ -16,7 +16,7 @@ import murder_client as murder_client
 
 
 opts = {}
-log = logging.getLogger('herd')
+log = logging.getLogger('horde')
 log.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
 ch.setLevel(logging.DEBUG)
@@ -25,10 +25,10 @@ formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s',
 ch.setFormatter(formatter)
 log.addHandler(ch)
 
-herd_root = os.path.dirname(os.path.realpath(__file__))
-bittornado_tgz = os.path.join(herd_root, 'bittornado.tar.gz')
-murderclient_py = os.path.join(herd_root, 'murder_client.py')
-herd_py = os.path.join(herd_root, 'herd.py')
+horde_root = os.path.dirname(os.path.realpath(__file__))
+bittornado_tgz = os.path.join(horde_root, 'bittornado.tar.gz')
+murderclient_py = os.path.join(horde_root, 'murder_client.py')
+horde_py = os.path.join(horde_root, 'horde.py')
 
 
 def run(local_file, remote_file, hosts):
@@ -47,7 +47,7 @@ def run(local_file, remote_file, hosts):
     log.info("Transferring")
     if not os.path.isfile(bittornado_tgz):
         cwd = os.getcwd()
-        os.chdir(herd_root)
+        os.chdir(horde_root)
         args = ['tar', 'czf', 'bittornado.tar.gz', 'BitTornado']
         log.info("Executing: " + " ".join(args))
         subprocess.call(args)
@@ -83,7 +83,7 @@ def transfer(host, local_file, remote_target, retry=0):
         scp(host, bittornado_tgz, '%s/bittornado.tar.gz' % rp)
         ssh(host, "cd %s; tar zxvf bittornado.tar.gz > /dev/null" % rp)
         scp(host, murderclient_py, '%s/murder_client.py' % rp)
-        scp(host, herd_py, '%s/herd.py' % rp)
+        scp(host, horde_py, '%s/horde.py' % rp)
     log.info("Copying %s to %s:%s" % (local_file, host, remote_file))
     scp(host, local_file, remote_file)
     command = 'python %s/murder_client.py peer %s %s' % (
@@ -93,7 +93,7 @@ def transfer(host, local_file, remote_target, retry=0):
     log.info("running \"%s\" on %s", command, host)
     result = ssh(host, command)
     if result == 0:
-        cmd = 'python %s/herd.py %s %s --seed True' % (
+        cmd = 'python %s/horde.py %s %s --seed True' % (
             rp,
             remote_file,
             remote_target)
@@ -159,7 +159,7 @@ def local_ip():
     return s.getsockname()[0]
 
 
-def herdmain():
+def hordemain():
     if not os.path.exists(opts['hosts']) and opts['hostlist'] is False:
         sys.exit('ERROR: hosts file "%s" does not exist' % opts['hosts'])
 
@@ -179,9 +179,9 @@ def herdmain():
 
 
 def run_with_opts(local_file, remote_file, hosts='', retry=0, port=8998,
-                  remote_path='/tmp/herd', data_file='./data',
-                  log_dir='/tmp/herd', hostlist=False):
-    """Can include herd into existing python easier."""
+                  remote_path='/tmp/horde', data_file='./data',
+                  log_dir='/tmp/horde', hostlist=False):
+    """Can include horde into existing python easier."""
     global opts
     opts['local-file'] = local_file
     opts['remote-file'] = remote_file
@@ -192,7 +192,7 @@ def run_with_opts(local_file, remote_file, hosts='', retry=0, port=8998,
     opts['data_file'] = data_file
     opts['log_dir'] = log_dir
     opts['hostlist'] = hostlist
-    herdmain()
+    hordemain()
 
 
 def entry_point():
@@ -220,7 +220,7 @@ def entry_point():
                         help="Port number to run the tracker on")
 
     parser.add_argument('--remote-path',
-                        default='/tmp/herd',
+                        default='/tmp/horde',
                         help="Temporary path to store uploads")
 
     parser.add_argument('--data-file',
@@ -228,7 +228,7 @@ def entry_point():
                         help="Temporary file to store for bittornado.")
 
     parser.add_argument('--log-dir',
-                        default='/tmp/herd',
+                        default='/tmp/horde',
                         help="Path to the directory for murder logs")
 
     parser.add_argument('--hostlist',
@@ -244,7 +244,7 @@ def entry_point():
     if opts['seed']:
         seed(opts['local-file'], opts['remote-file'])
     else:
-        herdmain()
+        hordemain()
 
 if __name__ == '__main__':
     entry_point()

@@ -1,8 +1,8 @@
 # Written by Bram Cohen
 # see LICENSE.txt for license information
 
-from herd.BitTornado.bitfield import Bitfield
-from herd.BitTornado.clock import clock
+from horde.BitTornado.bitfield import Bitfield
+from horde.BitTornado.clock import clock
 from binascii import b2a_hex
 
 try:

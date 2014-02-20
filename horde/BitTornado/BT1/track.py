@@ -1,18 +1,18 @@
 # Written by Bram Cohen
 # see LICENSE.txt for license information
 
-from herd.BitTornado.parseargs import parseargs, formatDefinitions
-from herd.BitTornado.RawServer import RawServer, autodetect_ipv6, autodetect_socket_style
-from herd.BitTornado.HTTPHandler import HTTPHandler, months, weekdays
-from herd.BitTornado.parsedir import parsedir
+from horde.BitTornado.parseargs import parseargs, formatDefinitions
+from horde.BitTornado.RawServer import RawServer, autodetect_ipv6, autodetect_socket_style
+from horde.BitTornado.HTTPHandler import HTTPHandler, months, weekdays
+from horde.BitTornado.parsedir import parsedir
 from NatCheck import NatCheck
 from T2T import T2TList
-from herd.BitTornado.subnetparse import IP_List, ipv6_to_ipv4, to_ipv4, is_valid_ip, is_ipv4
-from herd.BitTornado.iprangeparse import IP_List as IP_Range_List
-from herd.BitTornado.torrentlistparse import parsetorrentlist
+from horde.BitTornado.subnetparse import IP_List, ipv6_to_ipv4, to_ipv4, is_valid_ip, is_ipv4
+from horde.BitTornado.iprangeparse import IP_List as IP_Range_List
+from horde.BitTornado.torrentlistparse import parsetorrentlist
 from threading import Event, Thread
-from herd.BitTornado.bencode import bencode, bdecode, Bencached
-from herd.BitTornado.zurllib import urlopen, quote, unquote
+from horde.BitTornado.bencode import bencode, bdecode, Bencached
+from horde.BitTornado.zurllib import urlopen, quote, unquote
 from Filter import Filter
 from urlparse import urlparse
 from os import rename, getpid
@@ -20,7 +20,7 @@ from os.path import exists, isfile
 from cStringIO import StringIO
 from traceback import print_exc
 from time import time, gmtime, strftime, localtime
-from herd.BitTornado.clock import clock
+from horde.BitTornado.clock import clock
 from random import shuffle, seed, randrange
 from sha import sha
 from types import StringType, IntType, LongType, ListType, DictType
@@ -29,8 +29,8 @@ from string import lower
 import sys, os
 import signal
 import re
-import herd.BitTornado.__init__
-from herd.BitTornado.__init__ import version, createPeerID
+import horde.BitTornado.__init__
+from horde.BitTornado.__init__ import version, createPeerID
 try:
     True
 except:
