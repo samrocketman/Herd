@@ -72,4 +72,4 @@ much more bueno.  One would simply need to:
 * [Nate House](https://github.com/naterh)
 * [Russ Garrett](http://github.com/russss)
 * [Laurie Denness](http://github.com/lozzd)
-* [Sam Gleske](http://github.com/samrocketman)
+* [Sam Gleske](https://github.com/samrocketman)
